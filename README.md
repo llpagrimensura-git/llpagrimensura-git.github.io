@@ -32,3 +32,77 @@ El sitio está publicado en:
 | Verde oscuro claro | `#076461` | Fondos, detalles |
 
 ## 📁 Estructura del Proyecto
+
+consultora-website/
+├── index.html # Página principal
+├── resources/ # Recursos y librerías
+│ ├── css/ # Hojas de estilo
+│ ├── js/ # Scripts JavaScript
+│ └── images/ # Imágenes y assets
+├── layers/ # Capas para mapas (QGIS2Web)
+├── styles/ # Estilos específicos
+└── README.md # Este archivo
+
+
+## 🛠️ Tecnologías Utilizadas
+
+- **HTML5** - Estructura semántica
+- **CSS3** - Estilos y animaciones
+- **JavaScript** - Interactividad
+- **Google Maps API** - Mapas interactivos
+- **Bootstrap Icons** - Iconografía
+- **Google Fonts** - Tipografía (Rubik)
+- **GitHub Pages** - Hosting y deployment
+
+## 📋 Secciones del Sitio
+
+1. **Hero Section** - Presentación principal con call-to-action
+2. **Qué Hacemos** - 4 servicios principales con iconos
+3. **Proyectos** - Portfolio con filtros por estado
+4. **Mapa Interactivo** - Ubicación geográfica de proyectos
+5. **Colaboradores** - Empresas y partners
+6. **Nosotros** - Perfiles profesionales del equipo
+7. **Contacto** - Información de contacto y redes sociales
+
+## 🚀 Cómo Desplegar
+
+### Opción 1: GitHub Pages (Recomendado)
+1. Crear repositorio llamado `[usuario].github.io`
+2. Subir todos los archivos a la raíz
+3. Activar GitHub Pages en Settings → Pages
+4. Configurar branch `main` y folder `/ (root)`
+
+### Opción 2: Hosting Tradicional
+1. Subir archivos via FTP al directorio `public_html`
+2. Verificar que todas las rutas sean relativas
+3. Configurar dominio si es necesario
+
+## 🔧 Personalización
+
+### Cambiar Información de Contacto
+Editar en el footer:
+```html
+<a href="mailto:tuemail@consultora.com">tuemail@consultora.com</a>
+<a href="tel:+543424777230">+54 342 477-7230</a>
+
+# Agregar Nuevos Proyectos
+
+<div class="project-card">
+    <span class="project-status status-progress">EN CURSO</span>
+    <img src="ruta/imagen.jpg" alt="Nuevo Proyecto">
+    <div class="project-content">
+        <h3>Nombre del Proyecto</h3>
+        <p>Descripción del proyecto</p>
+        <a href="#" class="project-link">Ver Proyecto</a>
+    </div>
+</div>
+
+# Modificar Colaboradores
+
+<div class="collaborator-card">
+    <div class="collaborator-logo">
+        <img src="ruta/logo.png" alt="Nuevo Colaborador">
+    </div>
+    <div class="collaborator-name">Nombre Colaborador</div>
+    <div class="collaborator-type">Tipo de colaboración</div>
+</div>
