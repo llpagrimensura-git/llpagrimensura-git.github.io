@@ -76,33 +76,3 @@ consultora-website/
 1. Subir archivos via FTP al directorio `public_html`
 2. Verificar que todas las rutas sean relativas
 3. Configurar dominio si es necesario
-
-## 🔧 Personalización
-
-### Cambiar Información de Contacto
-Editar en el footer:
-```html
-<a href="mailto:tuemail@consultora.com">tuemail@consultora.com</a>
-<a href="tel:+543424777230">+54 342 477-7230</a>
-
-# Agregar Nuevos Proyectos
-
-<div class="project-card">
-    <span class="project-status status-progress">EN CURSO</span>
-    <img src="ruta/imagen.jpg" alt="Nuevo Proyecto">
-    <div class="project-content">
-        <h3>Nombre del Proyecto</h3>
-        <p>Descripción del proyecto</p>
-        <a href="#" class="project-link">Ver Proyecto</a>
-    </div>
-</div>
-
-# Modificar Colaboradores
-
-<div class="collaborator-card">
-    <div class="collaborator-logo">
-        <img src="ruta/logo.png" alt="Nuevo Colaborador">
-    </div>
-    <div class="collaborator-name">Nombre Colaborador</div>
-    <div class="collaborator-type">Tipo de colaboración</div>
-</div>
