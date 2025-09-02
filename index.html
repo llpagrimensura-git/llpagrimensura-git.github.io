@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONSULTORA - Especialistas en Urbanización</title>
+    <style>
+        :root {
+            --primary-color: #002c2b;
+            --secondary-color: #ff3d00;
+            --accent-color: #ffbc11;
+            --light-accent: #0a837f;
+            --dark-accent: #076461;
+            --light-color: #F8F5F0;
+            --dark-color: #00201f;
+            --text-color: #333333;
+            --status-completed: #0a837f;
+            --status-progress: #ffbc11;
+            --status-planned: #ff3d00;
+            --gradient-primary: linear-gradient(135deg, #002c2b 0%, #076461 100%);
+            --gradient-accent: linear-gradient(135deg, #0a837f 0%, #1ca6a1 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rubik', sans-serif;
+            background: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 80px;
+            font-weight: 400;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+        
+        .light {
+            font-weight: 300;
+        }
+        
+        .bold {
+            font-weight: 700;
+        }
+        
+        .black {
+            font-weight: 900;
+        }
+        
+        /* Navegación */
+        nav {
+            background: var(--gradient-primary);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 40px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0, 44, 43, 0.2);
+        }
+        
+        nav.scrolled {
+            padding: 12px 40px;
+            background: var(--primary-color);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        
+        .logo {
+            font-size: 1.8em;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--accent-color);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(0, 44, 43, 0.7), rgba(0, 44, 43, 0.8)), 
+                       url('https://images.unsplash.com/photo-1608303588026-884930af2559?q=80&w=1406&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.8em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            font-weight: 800;
+        }
+        
+        .hero-content p {
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            font-weight: 300;
+        }
+        
+        /* Secciones */
+        section {
+            padding: 90px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+        
+        .section-title p {
+            font-size: 1.3em;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        
+        /* Sección Qué Hacemos */
+        #que-hacemos {
+            background-color: #ffffff;
+        }
+        
+        .services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.service-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    flex: 1;
+    min-width: 250px;
+    max-width: 280px;
+    box-shadow: 0 8px 25px rgba(0, 44, 43, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 2px solid transparent;
+}
+        
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 44, 43, 0.15);
+            border-color: var(--light-accent);
+        }
+        
+        .service-icon {
+            font-size: 3.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+        
+        .service-card p {
+            color: #666;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        
+        /* Mapa */
+        .map-responsive {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
+            margin: 50px 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 44, 43, 0.15);
+            border: 3px solid var(--light-accent);
+        }
+        
+        .map-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 12px;
+        }
+        
+        /* Galería de Proyectos - 4 TARJETAS POR FILA */
+        .project-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            margin: 70px 0;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 15px;
+            width: calc(25% - 25px);
+            box-shadow: 0 8px 25px rgba(0, 44, 43, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 44, 43, 0.2);
+            border-color: var(--secondary-color);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .project-card:hover .project-image {
+            transform: scale(1.08);
+        }
+        
+        .project-content {
+            padding: 25px;
+            position: relative;
+        }
+        
+        .project-status {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: 0.8em;
+            font-weight: 600;
+            color: white;
+            font-family: 'Rubik', sans-serif;
+        }
+        
+        .status-completed {
+            background-color: var(--status-completed);
+        }
+        
+        .status-progress {
+            background-color: var(--status-progress);
+            color: var(--dark-color);
+        }
+        
+        .status-planned {
+            background-color: var(--status-planned);
+        }
+        
+        .project-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+        
+        .project-card p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+        
+        .project-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--gradient-accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
+            border: none;
+        }
+        
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(10, 131, 127, 0.3);
+        }
+        
+        /* Sección Colaboradores */
+        #colaboradores {
+            background: linear-gradient(rgba(248, 245, 240, 0.95), rgba(248, 245, 240, 0.95)), 
+                       url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .collaborators-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+        }
+        
+        .collaborator-card {
+            text-align: center;
+            width: 200px;
+            transition: transform 0.3s ease;
+        }
+        
+        .collaborator-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .collaborator-logo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 30px rgba(0, 44, 43, 0.15);
+            border: 4px solid var(--light-accent);
+            transition: all 0.3s ease;
+        }
+        
+        .collaborator-logo:hover {
+            transform: scale(1.1);
+            border-color: var(--secondary-color);
+        }
+        
+        .collaborator-logo img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+        
+        .collaborator-name {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .collaborator-type {
+            font-size: 0.95em;
+            color: #666;
+            font-weight: 300;
+        }
+        
+        /* Sección Sobre Nosotros */
+        #sobre {
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+        }
+        
+        #sobre .section-title h2 {
+            color: white;
+        }
+        
+        #sobre .section-title p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .team-profiles {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            width: 320px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .profile-image {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-info {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .profile-info h3 {
+            color: white;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        
+        .profile-info .title {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .profile-info p {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 70px 20px 30px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 25px;
+            font-size: 1.4em;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+        
+        .footer-column p, .footer-column a {
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s;
+            font-weight: 300;
+        }
+        
+        .footer-column a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--light-accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95em;
+            font-weight: 300;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .project-card {
+                width: calc(33.333% - 25px);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .project-card {
+                width: calc(50% - 25px);
+            }
+            
+            .hero-content h1 {
+                font-size: 2.8em;
+            }
+            
+            .hero-content p {
+                font-size: 1.3em;
+            }
+            
+            .collaborators-grid {
+                gap: 40px;
+            }
+            
+            .collaborator-card {
+                width: 170px;
+            }
+            
+            .collaborator-logo {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                padding: 12px 20px;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--gradient-primary);
+                flex-direction: column;
+                padding: 25px;
+                gap: 20px;
+                box-shadow: 0 10px 30px rgba(0, 44, 43, 0.2);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .project-card {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .team-profiles {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero {
+                height: 70vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+            
+            .hero-content p {
+                font-size: 1.1em;
+            }
+            
+            .collaborators-grid {
+                gap: 30px;
+            }
+            
+            .collaborator-card {
+                width: 140px;
+            }
+            
+            .collaborator-logo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .collaborator-logo img {
+                width: 70px;
+                height: 70px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .services {
+                gap: 25px;
+            }
+            
+            .service-card {
+                width: 100%;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2em;
+            }
+            
+            .section-title p {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <i class="bi bi-geo-alt-fill"></i> Consultora
+        </div>
+        
+        <div class="nav-menu">
+            <a href="#" onclick="scrollToTop(); return false;">Inicio</a>
+            <a href="#que-hacemos">Qué Hacemos</a>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#colaboradores">Colaboradores</a>
+            <a href="#sobre">Nosotros</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+        
+        <button class="mobile-menu-btn">
+            <i class="-list"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero">
+    <div class="hero-content">
+        <h1 class="black">Transformamos ideas en ciudades</h1>
+        <p class="light">Especialistas en planificación y desarrollo urbano con enfoque integral</p>
+    </div>
+</div>
+
+<!-- Sección Qué Hacemos -->
+<section id="que-hacemos">
+    <div class="container">
+        <div class="section-title">
+            <h2>¿Qué hacemos?</h2>
+            <p class="light">Servicio integral para la planificación y el desarrollo urbano</p>
+        </div>
+        
+        <div class="services">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="bi bi-buildings"></i>
+                </div>
+                <h3>PLANIFICACIÓN URBANA</h3>
+                <p class="light">Diseño y desarrollo de loteos urbanos y ordenamiento territorial conforme a normativas vigentes.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="bi bi-droplet"></i>
+                </div>
+                <h3>ESTUDIOS HÍDRICOS Y AMBIENTALES</h3>
+                <p class="light">Análisis de drenaje urbano, gestión de recursos hídricos y evaluaciones de impacto ambiental.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="bi bi-tools"></i>
+                </div>
+                <h3>OBRAS DE INGENIERÍA</h3>
+                <p class="light">Proyectos ejecutivos y dirección de obras de infraestructura urbana, vialidad y servicios.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="bi bi-clipboard-data"></i>
+                </div>
+                <h3>ADMINISTRACIÓN Y GESTIÓN</h3>
+                <p class="light">Gestión integral de proyectos urbanos, desde la conceptualización hasta la ejecución final y comercialización.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección Proyectos -->
+<section id="proyectos">
+    <div class="container">
+        <div class="section-title">
+            <h2>Nuestros Proyectos</h2>
+            <p class="light">Conocé nuestro portfolio de urbanizaciones y desarrollos territoriales</p>
+        </div>
+        
+        <div class="map-responsive">
+            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=17KluAp3-09VLwJWauOyusjsJ5I6wr7SC&ehbc=2E312F" allowfullscreen></iframe>		
+        </div>
+
+        <div class="project-gallery">
+            <!-- Proyecto FINALIZADO -->
+            <div class="project-card">
+                <span class="project-status status-completed">FINALIZADO</span>
+                <img src="https://images.unsplash.com/photo-1628158145409-9e222b56cc0b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3VydmV5aW5nfGVufDB8fDB8fHww" alt="Loteo La Candelaria" class="project-image">
+                <div class="project-content">
+                    <h3>Loteo "La Candelaria"</h3>
+                    <p class="light">Diseño y mensura para urbanización en la localidad de Recreo, Santa Fe</p>
+                    <a href="https://www.google.com/maps/d/u/0/edit?mid=17KluAp3-09VLwJWauOyusjsJ5I6wr7SC&usp=sharing" target="_blank" class="project-link">Ver Proyecto</a>
+                </div>
+            </div>
+            
+            <!-- Proyecto EN CURSO -->
+            <div class="project-card">
+                <span class="project-status status-progress">EN CURSO</span>
+                <img src="https://images.unsplash.com/photo-1610079874911-4487134bc8b9?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Barrio Privado La Lucila" class="project-image">
+                <div class="project-content">
+                    <h3>Barrio Privado "La Lucila"</h3>
+                    <p class="light">Diseño para barrio privado "La Lucila" en la localidad de Santo Tomé</p>
+                    <a href="https://www.google.com/maps/d/u/0/edit?mid=1MEst3nN8gcPTH9WXHPZpy5sdV4P5SMg&usp=sharing" target="_blank" class="project-link">Ver Proyecto</a>
+                </div>
+            </div>
+            
+            <!-- Proyecto PLANIFICADO -->
+            <div class="project-card">
+                <span class="project-status status-planned">PROYECTO</span>
+                <img src="https://images.unsplash.com/photo-1610081339528-3e05c5969922?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Relevamiento para Complejo Turistico" class="project-image">
+                <div class="project-content">
+                    <h3>Relevamiento para Complejo Turístico</h3>
+                    <p class="light">Relevamiento para proyecto de Complejo Turístico y estudios preliminares en la localidad de Arroyo Leyes</p>
+                    <a href="https://www.google.com/maps/d/u/0/edit?mid=1yo-oFjkMl_Eb-Si6oFEHhdhP_iXzJPs&usp=sharing" target="_blank" class="project-link">Ver Proyecto</a>
+                </div>
+            </div>
+            
+            <!-- Más proyectos -->
+            <div class="project-card">
+                <span class="project-status status-completed">FINALIZADO</span>
+                <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Relevamiento para Estudio Hídrico" class="project-image">
+                <div class="project-content">
+                    <h3>Relevamiento para Estudio Hídrico</h3>
+                    <p class="light">Red de Puntos de Apoyo para relevamiento con drone para estudio hídrico en cuenca urbana de la localidad de Santa Fe</p>
+                    <a href="https://www.google.com/maps/d/u/0/edit?mid=1bof1qkWjyCxSB1fKTfMesZVXuBPA8DOy&usp=sharing" target="_blank" class="project-link">Ver Proyecto</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección Colaboradores -->
+<section id="colaboradores">
+    <div class="container">
+        <div class="section-title">
+            <h2>Nuestros Colaboradores</h2>
+            <p class="light">Trabajamos con las mejores empresas del sector para garantizar excelencia en cada proyecto</p>
+        </div>
+        
+        <div class="collaborators-grid">
+            <div class="collaborator-card">
+                <div class="collaborator-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1606/1606208.png" alt="Constructora Norte">
+                </div>
+                <div class="collaborator-name">Constructora Norte</div>
+                <div class="collaborator-type light">Constructora</div>
+            </div>
+            
+            <div class="collaborator-card">
+                <div class="collaborator-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/128/3418/3418412.png" alt="Ingeniería Integral">
+                </div>
+                <div class="collaborator-name">Ingeniería Integral</div>
+                <div class="collaborator-type light">Ingeniería Civil</div>
+            </div>
+            
+            <div class="collaborator-card">
+                <div class="collaborator-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2318/2318375.png" alt="Arquitectura & Diseño">
+                </div>
+                <div class="collaborator-name">Arquitectura & Diseño</div>
+                <div class="collaborator-type light">Arquitectura</div>
+            </div>
+            
+            <div class="collaborator-card">
+                <div class="collaborator-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2716/2716770.png" alt="Desarrollos Urbanos">
+                </div>
+                <div class="collaborator-name">Desarrollos Urbanos</div>
+                <div class="collaborator-type light">Desarrolladora</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección Sobre Nosotros -->
+<section id="sobre">
+    <div class="container">
+        <div class="section-title">
+            <h2>¿Quiénes somos?</h2>
+            <p class="light">Profesionales especializados en desarrollo urbano y territorial</p>
+        </div>
+        
+        <div class="team-profiles">
+            <div class="profile-card">
+                <div class="profile-image">
+                    <img src="https://media.licdn.com/dms/image/v2/C5603AQFbaATxklXodA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1616330488654?e=1758758400&v=beta&t=J80QKzPveR8NwUgK8TSd97U8YjH5dSNj3q_QCWJQFE0" alt="Ingeniera Agrimensora">
+                </div>
+                <div class="profile-info">
+                    <h3>Angelina Poli</h3>
+                    <p class="title">Ingeniera Agrimensora</p>
+                    <p class="light">Especialista en planificación urbana con más de 8 años de experiencia en desarrollo de loteos y ordenamiento territorial</p>
+                </div>
+            </div>
+            
+            <div class="profile-card">
+                <div class="profile-image">
+                    <img src="https://media.licdn.com/dms/image/v2/D4E03AQFuTXgoaGMvGQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1710356770847?e=1758758400&v=beta&t=yw0lp8AXTjpd_HQmCAv-Mqqj3I2lA8mUn5snUdRXbew" alt="Ingeniera Agrimensora">
+                </div>
+                <div class="profile-info">
+                    <h3>Lucila L. Piedrabuena</h3>
+                    <p class="title">Ingeniera Agrimensora</p>
+                    <p class="light">Experta en gestión de proyectos urbanos integrales</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="contacto">
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>Consultora</h3>
+            <p class="light">Especialistas en planificación y desarrollo urbano con enfoque integral</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/datumestudio"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.instagram.com/datumestudio/"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/datum-estudio/"><i class="bi bi-linkedin"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+        </div>
+
+        <div class="footer-column">
+            <h3>Contacto</h3>
+            <p class="light"><i class="bi bi-geo-alt"></i> Santa Fe, Argentina</p>
+            <a href="mailto:consultora.urbana@gmail.com" class="light"><i class="bi bi-envelope"></i> Enviar correo</a>
+            <a href="https://wa.me/5493424777230" target="_blank" class="light"><i class="bi bi-whatsapp"></i> Enviar mensaje</a>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        <p>&copy; 2025 CONSULTORA - Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script>
+    // Función para scroll al inicio
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Navegación fija con efecto de scroll
+    window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    // Menú móvil
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    mobileMenuBtn.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+    });
+    
+    // Cerrar menú al hacer clic en un enlace (móvil)
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+        });
+    });
+</script>
+
+</body>
+</html>
