@@ -9,19 +9,19 @@
     <title>CONSULTORA - Especialistas en Urbanización</title>
     <style>
         :root {
-            --primary-color: #002c2b;
-            --secondary-color: #ff3d00;
-            --accent-color: #ffbc11;
-            --light-accent: #0a837f;
-            --dark-accent: #076461;
-            --light-color: #F8F5F0;
-            --dark-color: #00201f;
-            --text-color: #333333;
-            --status-completed: #0a837f;
-            --status-progress: #ffbc11;
-            --status-planned: #ff3d00;
-            --gradient-primary: linear-gradient(135deg, #002c2b 0%, #076461 100%);
-            --gradient-accent: linear-gradient(135deg, #0a837f 0%, #1ca6a1 100%);
+            --primary-color: #281f16;
+            --secondary-color: #ff6e42;
+            --accent-color: #c6e2ed;
+            --light-accent: #281f16;
+            --dark-accent: #281f16;
+            --light-color: #e6e3de;
+            --dark-color: #281f16;
+            --text-color: #281f16;
+            --status-completed: #281f16;
+            --status-progress: #c6e2ed;
+            --status-planned: #ff6e42;
+            --gradient-primary: linear-gradient(135deg, #281f16 0%, #281f16 100%);
+            --gradient-accent: linear-gradient(135deg, ##281f16 0%, #281f16 100%);
         }
         
         * {
@@ -31,7 +31,7 @@
         }
         
         body {
-            font-family: 'Rubik', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background: var(--light-color);
             color: var(--text-color);
             line-height: 1.6;
@@ -40,7 +40,7 @@
         }
         
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Rubik', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             color: var(--accent-color);
         }
@@ -139,19 +139,16 @@
         }
         
         /* Hero Section */
-        .hero {
-            height: 85vh;
-            background: linear-gradient(rgba(0, 44, 43, 0.7), rgba(0, 44, 43, 0.8)), 
-                       url('https://images.unsplash.com/photo-1608303588026-884930af2559?q=80&w=1406&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
+.hero {
+    height: 85vh;
+    background: url('https://i.ibb.co/tPX2jyRS/borde-wallpaper.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+}
         
         .hero-content h1 {
             font-size: 3.8em;
@@ -372,12 +369,13 @@
         
         /* Sección Colaboradores */
         #colaboradores {
-            background: linear-gradient(rgba(248, 245, 240, 0.95), rgba(248, 245, 240, 0.95)), 
-                       url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
+    background: 
+        linear-gradient(rgba(248, 245, 240, 0.85), rgba(248, 245, 240, 0.9)), 
+        url('https://i.ibb.co/tPX2jyRS/borde-wallpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
         
         .collaborators-grid {
             display: flex;
@@ -407,7 +405,7 @@
             justify-content: center;
             margin: 0 auto 25px;
             box-shadow: 0 10px 30px rgba(0, 44, 43, 0.15);
-            border: 4px solid var(--light-accent);
+            border: 4px solid var(--accent-color);
             transition: all 0.3s ease;
         }
         
@@ -713,7 +711,7 @@
 <nav id="navbar">
     <div class="nav-container">
         <div class="logo">
-            <i class="bi bi-geo-alt-fill"></i> Consultora
+            <i class="bi bi-geo-alt-fill"></i> Borde.
         </div>
         
         <div class="nav-menu">
@@ -721,7 +719,7 @@
             <a href="#que-hacemos">Qué Hacemos</a>
             <a href="#proyectos">Proyectos</a>
             <a href="#colaboradores">Colaboradores</a>
-            <a href="#sobre">Nosotros</a>
+            <!--a href="#sobre">Nosotros</a-->
             <a href="#contacto">Contacto</a>
         </div>
         
@@ -734,8 +732,8 @@
 <!-- Hero Section -->
 <div class="hero">
     <div class="hero-content">
-        <h1 class="black">Transformamos ideas en ciudades</h1>
-        <p class="light">Especialistas en planificación y desarrollo urbano con enfoque integral</p>
+        <!--h1 class="black">Transformamos ideas en ciudades</h1>
+        <p class="light">Especialistas en planificación y desarrollo urbano con enfoque integral</p-->
     </div>
 </div>
 
@@ -791,9 +789,9 @@
             <p class="light">Conocé nuestro portfolio de urbanizaciones y desarrollos territoriales</p>
         </div>
         
-        <div class="map-responsive">
+        <!--div class="map-responsive">
             <iframe src="https://www.google.com/maps/d/u/0/embed?mid=17KluAp3-09VLwJWauOyusjsJ5I6wr7SC&ehbc=2E312F" allowfullscreen></iframe>		
-        </div>
+        </div-->
 
         <div class="project-gallery">
             <!-- Proyecto FINALIZADO -->
@@ -882,13 +880,13 @@
                 </div>
                 <div class="collaborator-name">Desarrollos Urbanos</div>
                 <div class="collaborator-type light">Desarrolladora</div>
-            </div>
+			</div>
         </div>
     </div>
 </section>
 
 <!-- Sección Sobre Nosotros -->
-<section id="sobre">
+<!--section id="sobre">
     <div class="container">
         <div class="section-title">
             <h2>¿Quiénes somos?</h2>
@@ -919,12 +917,12 @@
             </div>
         </div>
     </div>
-</section>
+</section-->
 
 <footer id="contacto">
     <div class="footer-content">
         <div class="footer-column">
-            <h3>Consultora</h3>
+            <h3>Borde.</h3>
             <p class="light">Especialistas en planificación y desarrollo urbano con enfoque integral</p>
             <div class="social-links">
                 <a href="https://www.facebook.com/datumestudio"><i class="bi bi-facebook"></i></a>
@@ -945,7 +943,7 @@
     </div>
     
     <div class="copyright">
-        <p>&copy; 2025 CONSULTORA - Todos los derechos reservados.</p>
+        <p>&copy; 2025 Borde. - Todos los derechos reservados.</p>
     </div>
 </footer>
 
