@@ -144,7 +144,7 @@
         
         /* Hero Section */
         .hero {
-            height: 50vh;
+            height: 70vh;
             background: url('https://images.unsplash.com/photo-1672871168953-1043194ed08b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870') center/cover no-repeat;
             display: flex;
             align-items: center;
@@ -155,20 +155,87 @@
         }
         
         .hero-content h1 {
-            font-size: 2.8em;
+            font-size: 1.8em;
             margin-bottom: 20px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
             font-weight: 800;
         }
         
         .hero-content p {
-            font-size: 1.2em;
+            font-size: 0.8em;
             margin-bottom: 30px;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
             font-weight: 500;
         }
 
-        
+       /* Animación de escritura */
+.typing-animation {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+}
+
+.highlight {
+    color: var(--secondary-color);
+}
+
+/* Animación fade in up */
+.fade-in-up {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards 1s;
+}
+
+/* Botones CTA */
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.cta-button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.85em;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cta-button.primary {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.cta-button.secondary {
+    background: var(--accent-color);
+    color: brown;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Animaciones keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+	   
         /* Secciones */
         section {
             padding: 90px 20px;
@@ -250,88 +317,201 @@
             line-height: 1.6;
         }
         
-        /* Sección mi.Borde */
-        #mi-borde {
+/* Sección mi.Borde - Timeline Interactivo */
+#mi-borde {
     background: 
-        linear-gradient(rgba(248, 245, 240, 0.85), rgba(248, 245, 240, 0.9)), 
-        url('https://images.unsplash.com/photo-1621421770492-272ae6d7882a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1033');
+        linear-gradient(rgba(248, 245, 240, 0.9), rgba(248, 245, 240, 0.95)), 
+        url('https://images.unsplash.com/photo-1621421770492-272ae6d7882a?ixlib=rb-4.1.0&auto=format&fit=crop&w=1950&q=80');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
 }
-        
-        .steps-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .step-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            flex: 1;
-            min-width: 250px;
-            max-width: 350px;
-            box-shadow: 0 8px 25px rgba(0, 44, 43, 0.1);
-            transition: all 0.3s ease;
-            text-align: center;
-            border: 2px solid transparent;
-        }
-        
-        .step-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 44, 43, 0.15);
-            border-color: var(--secondary-color);
-        }
-        
-        .step-number {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-primary);
-            color: white;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-        
-        .step-card h3 {
-            margin-bottom: 15px;
-            color: var(--primary-color);
-            font-size: 1.4em;
-            font-weight: 700;
-        }
-        
-        .step-card p {
-            color: #666;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-        
-        .demo-button {
-            display: inline-block;
-            margin-top: 40px;
-            padding: 15px 35px;
-            background: var(--secondary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1em;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 110, 66, 0.3);
-        }
-        
-        .demo-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 110, 66, 0.4);
-        }
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-badge {
+    display: inline-block;
+    background: var(--secondary-color);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 2.8em;
+    margin-bottom: 15px;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.section-header p {
+    font-size: 1.3em;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+.platform-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.platform-demo {
+    position: relative;
+}
+
+.demo-screen {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    border: 3px solid var(--primary-color);
+}
+
+.demo-screen img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.screen-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.feature-tooltip {
+    position: absolute;
+    background: var(--secondary-color);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite;
+}
+
+.feature-timeline {
+    position: relative;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.timeline-marker {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2em;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.timeline-content h4 {
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.timeline-content p {
+    color: #666;
+    font-weight: 300;
+}
+
+.demo-button {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 15px 35px;
+    background: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1em;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(255, 110, 66, 0.3);
+}
+
+.demo-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 110, 66, 0.4);
+}
+
+/* Animación para los tooltips */
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .platform-showcase {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .platform-demo {
+        order: 2;
+    }
+    
+    .platform-features {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-header h2 {
+        font-size: 2.2em;
+    }
+    
+    .section-header p {
+        font-size: 1.1em;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .timeline-marker {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .demo-button {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+}
         
         /* Galería de Proyectos */
         .project-gallery {
@@ -721,8 +901,18 @@
 <div class="hero">
     <div class="container">
         <div class="hero-content">
-            <h1 class="black">Trabajamos en el Borde</h1>
-            <p class="light">El límite entre tu proyecto y hacerlo realidad</p>
+            <h1 class="typing-animation">Trabajamos en el <span class="highlight">Borde</span></h1>
+            <p class="fade-in-up">El límite entre tu proyecto y hacerlo realidad</p>
+            <div class="hero-cta">
+                <a href="#mi-borde" class="cta-button primary">
+                    <i class="bi bi-rocket-takeoff"></i>
+                    Descubrir mi.Borde
+                </a>
+                <a href="#proyectos" class="cta-button secondary">
+                    <i class="bi bi-eye"></i>
+                    Ver Proyectos
+                </a>
+            </div>
         </div>
     </div>
 </div>
@@ -771,36 +961,58 @@
     </div>
 </section>
 
-<!-- Sección mi.Borde -->
+<!-- Sección mi.Borde - Timeline Interactivo -->
 <section id="mi-borde">
     <div class="container">
-        <div class="section-title">
+        <div class="section-header">
             <h2>¿Conoces mi.Borde?</h2>
-            <p class="light">Administrador de urbanizaciones con la posibilidad de crear tu mapa interactivo. Tu proyecto seguro en todos los dispositivos, completamente personalizado, con herramientas y estadísticas disponibles para tus clientes.</p>
+            <p>Administrador de urbanizaciones con mapas interactivos y herramientas avanzadas</p>
         </div>
         
-        <div class="steps-container">
-            <div class="step-card">
-                <div class="step-number">1</div>
-                <h3>Contactanos</h3>
-                <p class="light">Comunicate con nuestro equipo para conocer más sobre la plataforma y solicitar tu acceso.</p>
+        <div class="platform-showcase">
+            <div class="platform-demo">
+                <div class="demo-screen">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.1.0&auto=format&fit=crop&w=1950&q=80" alt="Dashboard mi.Borde">
+                    <div class="screen-overlay">
+                        <div class="feature-tooltip" style="top: 20%; left: 30%;">
+                            <span>Mapas Interactivos</span>
+                        </div>
+                        <div class="feature-tooltip" style="top: 60%; left: 70%;">
+                            <span>Estadísticas en Tiempo Real</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="step-card">
-                <div class="step-number">2</div>
-                <h3>Personalización</h3>
-                <p class="light">Configuramos tu espacio con la identidad de tu proyecto y las herramientas que necesitas.</p>
+            <div class="platform-features">
+                <div class="feature-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1</div>
+                        <div class="timeline-content">
+                            <h4>Configuración Inmediata</h4>
+                            <p class="light">Tu plataforma lista en 24 horas con toda la infraestructura necesaria</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2</div>
+                        <div class="timeline-content">
+                            <h4>Personalización Total</h4>
+                            <p class="light">Adaptada completamente a tu proyecto, marca y requerimientos específicos</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">3</div>
+                        <div class="timeline-content">
+                            <h4>Acceso Multiplataforma</h4>
+                            <p class="light">Disponible en todos los dispositivos, siempre sincronizado y actualizado</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="#contacto" class="demo-button">Contactanos para acceder a tu DEMO</a>
+                </div>
             </div>
-            
-            <div class="step-card">
-                <div class="step-number">3</div>
-                <h3>Acceso inmediato</h3>
-                <p class="light">Recibís tu usuario y contraseña para comenzar a utilizar todas las funcionalidades.</p>
-            </div>
-        </div>
-        
-        <div style="text-align: center; margin-top: 40px;">
-            <a href="#contacto" class="demo-button">Contactanos para acceder a tu DEMO</a>
         </div>
     </div>
 </section>
@@ -967,6 +1179,27 @@
             navMenu.classList.remove('active');
         });
     });
+	
+	// Efecto de escritura para el hero
+const heroTitle = document.querySelector('.typing-animation');
+if (heroTitle) {
+    const text = heroTitle.textContent;
+    heroTitle.textContent = '';
+    let i = 0;
+    
+    function typeWriter() {
+        if (i < text.length) {
+            heroTitle.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 100);
+        }
+    }
+    
+    // Iniciar animación después de que la página cargue
+    window.addEventListener('load', function() {
+        setTimeout(typeWriter, 500);
+    });
+}
 </script>
 
 </body>
