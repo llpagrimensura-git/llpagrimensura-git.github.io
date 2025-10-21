@@ -21,7 +21,7 @@
             --status-progress: #c6e2ed;
             --status-planned: #ff6e42;
             --gradient-primary: linear-gradient(135deg, #281f16 0%, #281f16 100%);
-            --gradient-accent: linear-gradient(135deg, ##281f16 0%, #281f16 100%);
+            --gradient-accent: linear-gradient(135deg, #281f16 0%, #281f16 100%);
         }
         
         * {
@@ -128,6 +128,10 @@
         .nav-menu a:hover::after {
             width: 100%;
         }
+		
+		.nav-highlight {
+    font-weight: 700 !important;
+}
         
         .mobile-menu-btn {
             display: none;
@@ -139,16 +143,16 @@
         }
         
         /* Hero Section */
-.hero {
-    height: 50vh;
-    background: url('https://images.unsplash.com/photo-1672871168953-1043194ed08b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870') center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    text-align: left;
-    color: white;
-    padding: 0 400px;
-}
+        .hero {
+            height: 50vh;
+            background: url('https://images.unsplash.com/photo-1672871168953-1043194ed08b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 400px;
+        }
         
         .hero-content h1 {
             font-size: 2.8em;
@@ -163,6 +167,7 @@
             text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
             font-weight: 500;
         }
+
         
         /* Secciones */
         section {
@@ -200,25 +205,25 @@
         }
         
         .services {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    margin-top: 50px;
-}
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 50px;
+        }
 
-.service-card {
-    background: white;
-    border-radius: 15px;
-    padding: 30px;
-    flex: 1;
-    min-width: 250px;
-    max-width: 280px;
-    box-shadow: 0 8px 25px rgba(0, 44, 43, 0.1);
-    transition: all 0.3s ease;
-    text-align: center;
-    border: 2px solid transparent;
-}
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            flex: 1;
+            min-width: 250px;
+            max-width: 280px;
+            box-shadow: 0 8px 25px rgba(0, 44, 43, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
+        }
         
         .service-card:hover {
             transform: translateY(-12px);
@@ -245,29 +250,90 @@
             line-height: 1.6;
         }
         
-        /* Mapa */
-        .map-responsive {
-            overflow: hidden;
-            padding-bottom: 56.25%;
-            position: relative;
-            height: 0;
-            margin: 50px 0;
+        /* Sección mi.Borde */
+        #mi-borde {
+    background: 
+        linear-gradient(rgba(248, 245, 240, 0.85), rgba(248, 245, 240, 0.9)), 
+        url('https://images.unsplash.com/photo-1621421770492-272ae6d7882a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1033');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .step-card {
+            background: white;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 44, 43, 0.15);
-            border: 3px solid var(--light-accent);
+            padding: 30px;
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            box-shadow: 0 8px 25px rgba(0, 44, 43, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
         }
         
-        .map-responsive iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-            border-radius: 12px;
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 44, 43, 0.15);
+            border-color: var(--secondary-color);
         }
         
-        /* Galería de Proyectos - 4 TARJETAS POR FILA */
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .step-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+        
+        .step-card p {
+            color: #666;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        
+        .demo-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 35px;
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 110, 66, 0.3);
+        }
+        
+        .demo-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 110, 66, 0.4);
+        }
+        
+        /* Galería de Proyectos */
         .project-gallery {
             display: flex;
             flex-wrap: wrap;
@@ -369,13 +435,13 @@
         
         /* Sección Colaboradores */
         #colaboradores {
-    background: 
-        linear-gradient(rgba(248, 245, 240, 0.85), rgba(248, 245, 240, 0.9)), 
-        url('https://images.unsplash.com/photo-1672871168953-1043194ed08b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
+            background: 
+                linear-gradient(rgba(248, 245, 240, 0.85), rgba(248, 245, 240, 0.9)), 
+                url('https://images.unsplash.com/photo-1672871168953-1043194ed08b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
         
         .collaborators-grid {
             display: flex;
@@ -431,80 +497,6 @@
             font-size: 0.95em;
             color: #666;
             font-weight: 300;
-        }
-        
-        /* Sección Sobre Nosotros */
-        #sobre {
-            background: var(--gradient-primary);
-            color: white;
-            text-align: center;
-        }
-        
-        #sobre .section-title h2 {
-            color: white;
-        }
-        
-        #sobre .section-title p {
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .team-profiles {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 50px;
-            flex-wrap: wrap;
-        }
-        
-        .profile-card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            overflow: hidden;
-            width: 320px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .profile-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
-        .profile-image {
-            height: 220px;
-            overflow: hidden;
-        }
-        
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .profile-info {
-            padding: 25px;
-            text-align: center;
-        }
-        
-        .profile-info h3 {
-            color: white;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-        
-        .profile-info .title {
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-        }
-        
-        .profile-info p {
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 300;
-            line-height: 1.6;
         }
         
         /* Footer */
@@ -651,13 +643,9 @@
                 gap: 40px;
             }
             
-            .team-profiles {
-                flex-direction: column;
-                align-items: center;
-            }
-            
             .hero {
                 height: 70vh;
+                padding: 0 20px;
             }
             
             .hero-content h1 {
@@ -717,23 +705,25 @@
         <div class="nav-menu">
             <a href="#" onclick="scrollToTop(); return false;">Inicio</a>
             <a href="#que-hacemos">Qué Hacemos</a>
+            <a href="#mi-borde" class="nav-highlight">mi.Borde</a>
             <a href="#proyectos">Proyectos</a>
             <a href="#colaboradores">Colaboradores</a>
-            <!--a href="#sobre">Nosotros</a-->
             <a href="#contacto">Contacto</a>
         </div>
         
         <button class="mobile-menu-btn">
-            <i class="-list"></i>
+            <i class="bi bi-list"></i>
         </button>
     </div>
 </nav>
 
 <!-- Hero Section -->
 <div class="hero">
-    <div class="hero-content">
-        <h1 class="black">Trabajamos en el Borde</h1>
-        <p class="light">El límite entre tu proyecto y hacerlo realidad</p>
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="black">Trabajamos en el Borde</h1>
+            <p class="light">El límite entre tu proyecto y hacerlo realidad</p>
+        </div>
     </div>
 </div>
 
@@ -781,6 +771,40 @@
     </div>
 </section>
 
+<!-- Sección mi.Borde -->
+<section id="mi-borde">
+    <div class="container">
+        <div class="section-title">
+            <h2>¿Conoces mi.Borde?</h2>
+            <p class="light">Administrador de urbanizaciones con la posibilidad de crear tu mapa interactivo. Tu proyecto seguro en todos los dispositivos, completamente personalizado, con herramientas y estadísticas disponibles para tus clientes.</p>
+        </div>
+        
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Contactanos</h3>
+                <p class="light">Comunicate con nuestro equipo para conocer más sobre la plataforma y solicitar tu acceso.</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Personalización</h3>
+                <p class="light">Configuramos tu espacio con la identidad de tu proyecto y las herramientas que necesitas.</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Acceso inmediato</h3>
+                <p class="light">Recibís tu usuario y contraseña para comenzar a utilizar todas las funcionalidades.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="#contacto" class="demo-button">Contactanos para acceder a tu DEMO</a>
+        </div>
+    </div>
+</section>
+
 <!-- Sección Proyectos -->
 <section id="proyectos">
     <div class="container">
@@ -788,10 +812,6 @@
             <h2>Nuestros Proyectos</h2>
             <p class="light">Conocé nuestro portfolio de urbanizaciones y desarrollos territoriales</p>
         </div>
-        
-        <!--div class="map-responsive">
-            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=17KluAp3-09VLwJWauOyusjsJ5I6wr7SC&ehbc=2E312F" allowfullscreen></iframe>		
-        </div-->
 
         <div class="project-gallery">
             <!-- Proyecto FINALIZADO -->
@@ -852,10 +872,10 @@
         <div class="collaborators-grid">
             <div class="collaborator-card">
                 <div class="collaborator-logo">
-                    <img src="https://cdn-icons-png.flaticon.com/128/1606/1606208.png" alt="Constructora Norte">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2318/2318375.png" alt="Constructora Norte">
                 </div>
-                <div class="collaborator-name">Constructora Norte</div>
-                <div class="collaborator-type light">Constructora</div>
+                <div class="collaborator-name">Arquitectura & Diseño</div>
+                <div class="collaborator-type light">Arquitectura</div>
             </div>
             
             <div class="collaborator-card">
@@ -868,10 +888,10 @@
             
             <div class="collaborator-card">
                 <div class="collaborator-logo">
-                    <img src="https://cdn-icons-png.flaticon.com/128/2318/2318375.png" alt="Arquitectura & Diseño">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1606/1606208.png" alt="Arquitectura & Diseño">
                 </div>
-                <div class="collaborator-name">Arquitectura & Diseño</div>
-                <div class="collaborator-type light">Arquitectura</div>
+                <div class="collaborator-name">Constructora Norte</div>
+                <div class="collaborator-type light">Constructora</div>
             </div>
             
             <div class="collaborator-card">
@@ -880,50 +900,16 @@
                 </div>
                 <div class="collaborator-name">Desarrollos Urbanos</div>
                 <div class="collaborator-type light">Desarrolladora</div>
-			</div>
+            </div>
         </div>
     </div>
 </section>
-
-<!-- Sección Sobre Nosotros -->
-<!--section id="sobre">
-    <div class="container">
-        <div class="section-title">
-            <h2>¿Quiénes somos?</h2>
-            <p class="light">Profesionales especializados en desarrollo urbano y territorial</p>
-        </div>
-        
-        <div class="team-profiles">
-            <div class="profile-card">
-                <div class="profile-image">
-                    <img src="https://media.licdn.com/dms/image/v2/C5603AQFbaATxklXodA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1616330488654?e=1758758400&v=beta&t=J80QKzPveR8NwUgK8TSd97U8YjH5dSNj3q_QCWJQFE0" alt="Ingeniera Agrimensora">
-                </div>
-                <div class="profile-info">
-                    <h3>Angelina Poli</h3>
-                    <p class="title">Ingeniera Agrimensora</p>
-                    <p class="light">Especialista en planificación urbana con más de 8 años de experiencia en desarrollo de loteos y ordenamiento territorial</p>
-                </div>
-            </div>
-            
-            <div class="profile-card">
-                <div class="profile-image">
-                    <img src="https://media.licdn.com/dms/image/v2/D4E03AQFuTXgoaGMvGQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1710356770847?e=1758758400&v=beta&t=yw0lp8AXTjpd_HQmCAv-Mqqj3I2lA8mUn5snUdRXbew" alt="Ingeniera Agrimensora">
-                </div>
-                <div class="profile-info">
-                    <h3>Lucila L. Piedrabuena</h3>
-                    <p class="title">Ingeniera Agrimensora</p>
-                    <p class="light">Experta en gestión de proyectos urbanos integrales</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section-->
 
 <footer id="contacto">
     <div class="footer-content">
         <div class="footer-column">
             <h3>Borde.</h3>
-            <p class="light">Especialistas en planificación y desarrollo urbano con enfoque integral</p>
+            <p class="light">Consultora Urbana</p>
             <div class="social-links">
                 <a href="https://www.facebook.com/datumestudio"><i class="bi bi-facebook"></i></a>
                 <a href="https://www.instagram.com/datumestudio/"><i class="bi bi-instagram"></i></a>
