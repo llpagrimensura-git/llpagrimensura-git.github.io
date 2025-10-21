@@ -5,7 +5,7 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
-Sitio web profesional para consultora urbana.
+Sitio web profesional para consultora urbana especializada en planificación y desarrollo urbano.
 
 ## 🎨 Paleta de Colores
 
@@ -35,16 +35,3 @@ Sitio web profesional para consultora urbana.
 1. Clona el repositorio:
 ```bash
 git clone https://github.com/tu-usuario/borde-consultora.git
-
-## 📞 Contacto
-
-- Email: consultora.urbana@gmail.com
-- WhatsApp: +54 9 342 477-7230
-- Ubicación: Santa Fe, Argentina
-- LinkedIn: Datum Estudio
-- Instagram: @datumestudio
-
-## 🚧 Estado del Proyecto
-
-✅ Completado - Sitio en producción
-🔄 En desarrollo - Mejoras continuas
