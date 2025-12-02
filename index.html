@@ -3,11 +3,29 @@
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BORDE.</title>
     <style>
+	
+	@font-face {
+    font-family: 'ZalandoSans';
+    src: url('assets/fonts/ZalandoSans-Light.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'ZalandoSans';
+    src: url('assets/fonts/ZalandoSans_SemiExpanded-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'ZalandoSans';
+    src: url('assets/fonts/ZalandoSans_Expanded-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+}
+
         :root {
             --primary-color: #281f16;
             --secondary-color: #ff6e42;
@@ -29,9 +47,11 @@
             padding: 0;
             box-sizing: border-box;
         }
+		
+		
         
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'ZalandoSans', cursive;
             background: var(--light-color);
             color: var(--text-color);
             line-height: 1.6;
@@ -39,8 +59,13 @@
             font-weight: 400;
         }
         
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
+		h1 {font-family: 'ZalandoSans', sans-serif;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+		h2, h3, h4, h5, h6 {
+            font-family: 'ZalandoSans', sans-serif;
             font-weight: 700;
             color: var(--secondary-color);
         }
@@ -95,6 +120,12 @@
             margin-right: 10px;
             color: var(--secondary-color);
         }
+		
+	.logo-img {
+    height: 48px;
+    width: auto;
+    filter: invert(1) brightness(2);
+}
         
         .nav-menu {
             display: flex;
@@ -144,15 +175,23 @@
         
         /* Hero Section */
         .hero {
-            height: 70vh;
-            background: url('https://images.unsplash.com/photo-1672871168953-1043194ed08b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870') center/cover no-repeat;
-            display: flex;
+            height: 60vh;
+            background: url('assets/img/presentacion.png') center/100% no-repeat;
+			display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
             text-align: center;
             color: white;
-            padding: 0 400px;
+            padding-left: 35vw;
         }
+		
+		.hero-right {
+				width: 100%;                 /* ocupa mitad del hero */
+				text-align: center;         /* centra el texto dentro de ese bloque */
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+		}
         
         .hero-content h1 {
             font-size: 2.3em;
@@ -319,10 +358,10 @@
         
 /* Sección mi.Borde - Timeline Interactivo */
 #mi-borde {
-    background: 
-        linear-gradient(rgba(248, 245, 240, 0.9), rgba(248, 245, 240, 0.95)), 
-        url('https://images.unsplash.com/photo-1621421770492-272ae6d7882a?ixlib=rb-4.1.0&auto=format&fit=crop&w=1950&q=80');
-    background-size: cover;
+   background:
+        linear-gradient(rgba(248, 245, 240, 0.8), rgba(248, 245, 240, 0.85)),
+        url('assets/img/TRAMA-09.png');
+    background-size: 600px;
     background-position: center;
 }
 
@@ -615,12 +654,11 @@
         
         /* Sección Colaboradores */
         #colaboradores {
-            background: 
-                linear-gradient(rgba(248, 245, 240, 0.85), rgba(248, 245, 240, 0.9)), 
-                url('https://images.unsplash.com/photo-1672871168953-1043194ed08b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+        background:
+        linear-gradient(rgba(248, 245, 240, 0.6), rgba(248, 245, 240, 0.65)),
+        url('assets/img/TRAMA-08.png');
+    background-size: 600px;
+    background-position: center;
         }
         
         .collaborators-grid {
@@ -685,6 +723,12 @@
             color: white;
             padding: 70px 20px 30px;
         }
+		
+		.footer-logo-img {
+    height: 80px;   /* aumentá o bajá este valor */
+    width: auto;
+	filter: invert(1) brightness(2);
+}
         
         .footer-content {
             max-width: 1200px;
@@ -879,7 +923,8 @@
 <nav id="navbar">
     <div class="nav-container">
         <div class="logo">
-            Borde.
+        <img src="assets/icons/Recurso5.svg" alt="Borde" class="logo-img">
+			
         </div>
         
         <div class="nav-menu">
@@ -900,9 +945,9 @@
 <!-- Hero Section -->
 <div class="hero">
     <div class="container">
-        <div class="hero-content">
-            <h1 class="typing-animation">Trabajamos en el <span class="highlight">Borde.</span></h1>
-            <p class="fade-in-up">El límite entre tu proyecto y verlo hecho realidad</p>
+      <div class="hero-content hero-right">
+			<h1 class="typing-animation">Trabajamos en el <span class="highlight">Borde.</span></h1>
+			<p class="fade-in-up">Transformamos límites para proyectar el futuro</p>
             <div class="hero-cta">
                 <a href="#mi-borde" class="cta-button primary">
                     <i class="bi bi-rocket-takeoff"></i>
@@ -1010,7 +1055,7 @@
                 </div>
                 
                 <div style="text-align: center; margin-top: 40px;">
-                    <a href="#contacto" class="demo-button">¡Quiero mi.Borde!</a>
+                    <a href="borde_mockup.html" class="demo-button">¡Quiero mi.Borde!</a>
                 </div>
             </div>
         </div>
@@ -1120,8 +1165,9 @@
 <footer id="contacto">
     <div class="footer-content">
         <div class="footer-column">
-            <h3>Borde.</h3>
-            <p class="light">Consultora Urbana</p>
+            <div class="footer-logo">
+    <img src="assets/icons/Recurso3.svg" alt="Borde" class="footer-logo-img">
+</div>
             <div class="social-links">
                 <a href="https://www.facebook.com/datumestudio"><i class="bi bi-facebook"></i></a>
                 <a href="https://www.instagram.com/datumestudio/"><i class="bi bi-instagram"></i></a>
