@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mi.Borde</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde-principal: #281f16;       /* antes verde => ahora PRIMARY del index */
+			--verde-claro: #3e2c20;           /* variante más clara del primary */
+			--verde-oscuro: #140e0b;          /* variante más oscura */
+			--agua: #c6e2ed;                  /* reemplaza a tonos celestes */
+			--agua-claro: #e6f2f8;            /* versión clara */
+			--terracota: #ff6e42;             /* SECONDARY del index */
+			--terracota-claro: #ffb095;       /* hover más claro */
+			--amarillo: #ffb56b;              /* derivado cálido coherente con secondary */
+			--amarillo-claro: #ffe6cb;
+			--gris-oscuro: #281f16;           /* DARK del index */
+			--gris-claro: #e6e3de;            /* LIGHT del index */
+			--blanco: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--gris-claro) 0%, var(--agua-claro) 100%);
+            min-height: 100vh;
+        }
+
+        /* Header y Navegación */
+        .header {
+            background: linear-gradient(135deg, var(--verde-principal), var(--verde-oscuro));
+            color: var(--blanco);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+     .logo {
+    display: flex;
+    align-items: center;
+    gap: 2px; /* casi sin separación */
+}
+
+.logo-mi {
+    font-family: 'ZalandoSans', sans-serif;
+    font-weight: 800;       /* fuerte */
+    font-size: 2rem;        /* más grande */
+    color: white;           /* igual que header */
+    display: flex;
+    align-items: center;
+    line-height: 1;         /* lo pega al icono */
+}
+
+.logo-img {
+    height: 40px;           /* ajustá si querés */
+    width: auto;
+    filter: invert(1) brightness(2); /* blanco */
+    margin-left: -2px;      /* lo acerca aún más */
+}
+
+
+        .logo h1 {
+            font-weight: 700;
+            font-size: 1 rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--blanco);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--terracota);
+            color: var(--blanco);
+        }
+
+        .btn-primary:hover {
+            background: var(--terracota-claro);
+            color: var(--gris-oscuro);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--amarillo);
+            color: var(--gris-oscuro);
+        }
+
+        .btn-secondary:hover {
+            background: var(--amarillo-claro);
+            transform: translateY(-2px);
+        }
+
+        /* Contenido Principal */
+        .main-content {
+            display: none;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .main-content.active {
+            display: block;
+        }
+
+        /* Pantalla 1 - Landing Pública */
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--blanco), var(--agua-claro));
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--verde-principal), var(--agua), var(--terracota));
+        }
+
+        .hero-section h2 {
+            color: var(--terracota-claro);
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero-section p {
+            color: var(--gris-oscuro);
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .urbanizaciones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .urbanizacion-card {
+            background: var(--blanco);
+            border-radius: 15px;
+            padding: 1.8rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--verde-principal);
+            position: relative;
+        }
+
+        .urbanizacion-card::before {
+            content: 'BORDE';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--verde-principal);
+            color: var(--blanco);
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .urbanizacion-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .localidad-badge {
+            background: var(--agua);
+            color: var(--gris-oscuro);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .urbanizacion-card h3 {
+            color: var(--verde-oscuro);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 1.4rem;
+        }
+
+        .caracteristicas {
+            margin: 1rem 0;
+        }
+
+        .caracteristicas p {
+            margin: 0.4rem 0;
+            color: var(--gris-oscuro);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Pantalla 2 - Dashboard */
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--verde-principal), var(--agua));
+            color: var(--blanco);
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-header::before {
+            content: 'BORDE';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            opacity: 0.1;
+            font-weight: 700;
+        }
+
+        .admin-cards {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .admin-card {
+            background: var(--blanco);
+            border-radius: 15px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 5px solid var(--terracota);
+            transition: all 0.3s ease;
+        }
+
+        .admin-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .card-info h3 {
+            color: var(--verde-oscuro);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Pantalla 3 - ABM */
+        .abm-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: var(--blanco);
+            padding: 1.8rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--verde-principal);
+        }
+
+        .filtros {
+            background: var(--blanco);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            align-items: center;
+        }
+
+        select, input {
+            padding: 0.7rem 1rem;
+            border: 2px solid var(--gris-claro);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: var(--blanco);
+            transition: all 0.3s ease;
+        }
+
+        select:focus, input:focus {
+            border-color: var(--verde-principal);
+            outline: none;
+        }
+
+        .tabla-lotes {
+            background: var(--blanco);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gris-claro);
+        }
+
+        th {
+            background: var(--verde-principal);
+            color: var(--blanco);
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        .estado-disponible { 
+            color: var(--verde-principal); 
+            font-weight: 600;
+            background: var(--verde-claro);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+        .estado-reservado { 
+            color: var(--gris-oscuro); 
+            font-weight: 600;
+            background: var(--amarillo);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+        .estado-vendido { 
+            color: var(--blanco); 
+            font-weight: 600;
+            background: var(--terracota);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+            margin: 0.2rem;
+        }
+
+        /* Pantalla 4 - Mapa */
+        .mapa-container {
+            background: var(--blanco);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .mapa-header {
+            background: linear-gradient(135deg, var(--verde-principal), var(--agua));
+            color: var(--blanco);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .mapa-header::before {
+            content: 'BORDE';
+            position: absolute;
+            right: 20px;
+            opacity: 0.1;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .mapa-leyenda {
+            background: var(--gris-claro);
+            padding: 1rem 2rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .leyenda-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .color-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid var(--blanco);
+        }
+
+        .disponible { background: var(--verde-principal); }
+        .reservado { background: var(--amarillo); }
+        .vendido { background: var(--terracota); }
+        .espacio-verde { background: var(--verde-claro); }
+        .calle { background: var(--gris-oscuro); }
+
+        .mapa-visual {
+            height: 600px;
+            background: linear-gradient(135deg, var(--agua-claro), var(--blanco));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gris-oscuro);
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .mapa-visual::before {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 3rem;
+            opacity: 0.05;
+            font-weight: 700;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--blanco);
+            padding: 2.5rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-top: 4px solid var(--verde-principal);
+            position: relative;
+        }
+
+        .modal-content::before {
+            content: 'BORDE';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1rem;
+            opacity: 0.1;
+            font-weight: 700;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--blanco);
+        }
+
+        /* Efectos de marca BORDE */
+        .borde-watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 1rem;
+            color: var(--verde-principal);
+            opacity: 0.3;
+            font-weight: 700;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+         <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
+    <span class="logo-mi">mi.</span>
+    <img src="assets/icons/Recurso5.svg" alt="Logo Borde" class="logo-img">
+</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">Inicio</a>
+                <a href="#" class="nav-link" onclick="mostrarPantalla('pantalla2')">Mis Proyectos</a>
+            <div class="user-info">
+                    <span>lpiedrabuena</span>
+                    <button class="btn btn-secondary" onclick="cerrarSesion()">Cerrar Sesión</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Pantalla 1 - Landing Pública -->
+    <main class="main-content active" id="pantalla1">
+        <!--div class="hero-section"-->
+		<div class="hero-section" style="background: linear-gradient(135deg, rgba(46, 139, 87, 0.8), rgba(34, 139, 34, 0.8)), url('https://images.unsplash.com/photo-1651130241167-478691c07394?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;">
+            <h2 style="font-size: 2.2rem;">Administración de Urbanizaciones y Loteos a través de Mapas Interactivos</h2>
+            <!--p>Gestión inteligente de urbanizaciones y lotes</p-->
+            <p style="font-size: 1rem; color: var(--amarillo);">Descubrí urbanizaciones exclusivas y gestioná tus proyectos inmobiliarios a partir de tu propio Mapa Interactivo</p>
+            <button class="btn btn-primary" onclick="mostrarPantalla('pantalla2')" style="margin-top: 1rem;">Acceder a Mis Proyectos</button>
+        </div>
+
+        <!--h2 style="color: var(--verde-oscuro); margin-bottom: 1.5rem; text-align: center; font-size: 2rem;">Urbanizaciones Disponibles</h2-->
+        
+		<h2 style="color: var(--verde-oscuro); margin: 2rem 0 1rem; text-align:center;"> Mapa de Proyectos </h2>
+
+			<div id="mapInicio" style="height:450px; border-radius:15px; margin-bottom:2rem;
+				box-shadow:0 8px 25px rgba(0,0,0,0.1);"></div>
+		
+		<script>
+// Coordenadas inventadas dentro de Argentina
+const proyectos = [
+    { nombre: "Barrio Cerrado Los Alamos", coord: [-31.40, -64.18] }, // Córdoba
+    { nombre: "Country La Serranía", coord: [-31.42, -64.50] },       // Carlos Paz
+    { nombre: "Valle del Sol", coord: [-31.65, -64.43] },             // Alta Gracia
+    { nombre: "Estancia La Paz", coord: [-30.98, -64.09] },           // Jesús María
+    { nombre: "Cerro Verde", coord: [-30.98, -64.52] },               // La Cumbre
+    { nombre: "Bosque Alemán", coord: [-31.99, -64.57] }              // Villa Gral. Belgrano
+];
+
+// Crear mapa sin vista inicial
+var mapInicio = L.map('mapInicio');
+
+// Capa base
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+}).addTo(mapInicio);
+
+// Array para construir el extent
+var bounds = [];
+
+// Marcadores + agregar coordenadas al extent
+proyectos.forEach(p => {
+    L.marker(p.coord)
+        .addTo(mapInicio)
+        .bindPopup(`<b>${p.nombre}</b><br>Proyecto en ejecución`);
+    
+    bounds.push(p.coord);
+});
+
+// Fit automático a los proyectos
+mapInicio.fitBounds(bounds, { padding: [50, 50] });
+</script>
+
+		
+        <div class="urbanizaciones-grid">
+            <!-- Proyecto 1 -->
+            <div class="urbanizacion-card">
+                <span class="localidad-badge">Córdoba Capital</span>
+                <h3>Barrio Cerrado Los Alamos</h3>
+                <p><strong>36 lotes disponibles</strong></p>
+                <div class="caracteristicas">
+                    <p>📍 Zona Norte - Acceso por Ruta E53</p>
+                    <p>🏊‍♂️ Pileta comunitaria climatizada</p>
+                    <p>⚽ Cancha de fútbol y paddle</p>
+                    <p>🌳 40% de espacios verdes</p>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Ver Detalles</button>
+            </div>
+
+            <!-- Proyecto 2 -->
+            <div class="urbanizacion-card">
+                <span class="localidad-badge">Carlos Paz</span>
+                <h3>Country La Serranía</h3>
+                <p><strong>24 lotes disponibles</strong></p>
+                <div class="caracteristicas">
+                    <p>📍 Vista panorámica al lago</p>
+                    <p>🎾 Canchas de tenis y pádel</p>
+                    <p>🚣‍♂️ Acceso directo al lago</p>
+                    <p>🏔️ Miradores naturales</p>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Ver Detalles</button>
+            </div>
+
+            <!-- Proyecto 3 -->
+            <div class="urbanizacion-card">
+                <span class="localidad-badge">Alta Gracia</span>
+                <h3>Valle del Sol</h3>
+                <p><strong>18 lotes disponibles</strong></p>
+                <div class="caracteristicas">
+                    <p>📍 Valle protegido</p>
+                    <p>🏊‍♂️ Piscina infinita</p>
+                    <p>🍷 Bodega comunitaria</p>
+                    <p>🌞 Orientación norte perfecta</p>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Ver Detalles</button>
+            </div>
+
+            <!-- Proyecto 4 -->
+            <div class="urbanizacion-card">
+                <span class="localidad-badge">Jesús María</span>
+                <h3>Estancia La Paz</h3>
+                <p><strong>42 lotes disponibles</strong></p>
+                <div class="caracteristicas">
+                    <p>📍 Campo abierto</p>
+                    <p>🐎 Caballerizas comunitarias</p>
+                    <p>🌾 Huertas orgánicas</p>
+                    <p>🔥 Fogones grupales</p>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Ver Detalles</button>
+            </div>
+
+            <!-- Proyecto 5 -->
+            <div class="urbanizacion-card">
+                <span class="localidad-badge">La Cumbre</span>
+                <h3>Cerro Verde</h3>
+                <p><strong>15 lotes disponibles</strong></p>
+                <div class="caracteristicas">
+                    <p>📍 Cumbre privada</p>
+                    <p>🧗‍♂️ Escalada y rappel</p>
+                    <p>🚡 Teleférico interno</p>
+                    <p>🏞️ Vistas 360°</p>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Ver Detalles</button>
+            </div>
+
+            <!-- Proyecto 6 -->
+            <div class="urbanizacion-card">
+                <span class="localidad-badge">Villa General Belgrano</span>
+                <h3>Bosque Alemán</h3>
+                <p><strong>28 lotes disponibles</strong></p>
+                <div class="caracteristicas">
+                    <p>📍 Bosque nativo</p>
+                    <p>🍻 Cervecería artesanal</p>
+                    <p>🎭 Anfiteatro natural</p>
+                    <p>🌲 Sendero interpretativo</p>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Ver Detalles</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pantalla 2 - Dashboard -->
+    <main class="main-content" id="pantalla2">
+        <div class="dashboard-header">
+            <h2>Mis Urbanizaciones</h2>
+            <p>Gestiona los proyectos asignados a tu usuario</p>
+        </div>
+
+        <div class="admin-cards">
+            <div class="admin-card">
+                <div class="card-info">
+                    <h3>Barrio Cerrado Los Alamos</h3>
+                    <p>Córdoba Capital • 15/36 lotes vendidos</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-primary" onclick="mostrarPantalla('pantalla3')">Administrar</button>
+                    <button class="btn btn-secondary" onclick="mostrarPantalla('pantalla4')">Ver Mapa</button>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-info">
+                    <h3>Country La Serranía</h3>
+                    <p>Carlos Paz • 8/24 lotes vendidos</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-primary" onclick="mostrarPantalla('pantalla3')">Administrar</button>
+                    <button class="btn btn-secondary" onclick="mostrarPantalla('pantalla4')">Ver Mapa</button>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-info">
+                    <h3>Valle del Sol</h3>
+                    <p>Alta Gracia • 12/18 lotes vendidos</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-primary" onclick="mostrarPantalla('pantalla3')">Administrar</button>
+                    <button class="btn btn-secondary" onclick="mostrarPantalla('pantalla4')">Ver Mapa</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pantalla 3 - ABM -->
+    <main class="main-content" id="pantalla3">
+        <div class="abm-header">
+            <h2 style="color: var(--verde-oscuro);">Administrar Lotes</h2>
+            <button class="btn btn-primary" onclick="mostrarPantalla('pantalla4')">🗺️ Ver Mapa Interactivo</button>
+        </div>
+
+        <div class="filtros">
+            
+			 <select>
+                <option>Lote</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+			
+			<select>
+                <option>Manzana</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+            </select>
+            
+            <select>
+                <option>Estado</option>
+                <option>Disponible</option>
+                <option>Reservado</option>
+                <option>Vendido</option>
+            </select>
+           
+                      
+            <button class="btn btn-secondary">Aplicar Filtros</button>
+            <button class="btn btn-primary">Exportar Datos</button>
+        </div>
+
+        <div class="tabla-lotes">
+            <table>
+                <thead>
+                    <tr>
+						<th>Lote</th>
+                        <th>Manzana</th>
+						<th>Tipo</th>
+                        <th>Superficie</th>
+                        <th>Estado</th>
+                        <th>$ Pulicado</th>
+                        <th>$ Venta</th>
+                        <th>Adjudicatario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>A</strong></td>
+                        <td>15</td>
+                        <td>Privado</td>
+                        <td>800 m²</td>
+                        <td><span class="estado-disponible">Disponible</span></td>
+                        <td>$85,000</td>
+						<td>-</td>
+                        <td>-</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm">Editar</button>
+                            <button class="btn btn-secondary btn-sm" onclick="mostrarPantalla('pantalla4')">Mapa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>B</strong></td>
+                        <td>8</td>
+                        <td>Privado</td>
+                        <td>650 m²</td>
+                        <td><span class="estado-vendido">Vendido</span></td>
+                        <td>$78,000</td>
+						<td>-</td>
+                        <td>González, María</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm">Editar</button>
+                            <button class="btn btn-secondary btn-sm" onclick="mostrarPantalla('pantalla4')">Mapa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>C</strong></td>
+                        <td>12</td>
+                        <td>Privado</td>
+                        <td>720 m²</td>
+                        <td><span class="estado-reservado">Reservado</span></td>
+                        <td>$82,000</td>
+                        <td>-</td>
+						<td>López, Carlos</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm">Editar</button>
+                            <button class="btn btn-secondary btn-sm" onclick="mostrarPantalla('pantalla4')">Mapa</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Pantalla 4 - Mapa -->
+    <main class="main-content" id="pantalla4">
+        <div class="mapa-container">
+            <div class="mapa-header">
+                <h2>Mapa Interactivo</h2>
+                <button class="btn btn-secondary" onclick="mostrarPantalla('pantalla3')">← Volver a Administración</button>
+            </div>
+
+            <div class="mapa-leyenda">
+                <div class="leyenda-item">
+                    <div class="color-box disponible"></div>
+                    <span>Disponible</span>
+                </div>
+                <div class="leyenda-item">
+                    <div class="color-box reservado"></div>
+                    <span>Reservado</span>
+                </div>
+                <div class="leyenda-item">
+                    <div class="color-box vendido"></div>
+                    <span>Vendido</span>
+                </div>
+                <div class="leyenda-item">
+                    <div class="color-box espacio-verde"></div>
+                    <span>Espacio Verde</span>
+                </div>
+                <div class="leyenda-item">
+                    <div class="color-box calle"></div>
+                    <span>Calle</span>
+                </div>
+            </div>
+
+            <div class="mapa-visual">
+                <div style="text-align: center;">
+                    <h3 style="color: var(--verde-oscuro); margin-bottom: 1rem;">MAPA INTERACTIVO</h3>
+                    <p>Implementado con Leaflet/OpenStreetMap</p>
+                    <p>Lotes coloreados según estado y tipo</p>
+                    <p style="margin-top: 2rem;">
+                        <button class="btn btn-primary" onclick="simularClickLote()">Simular Click en Lote A-15</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Información del Lote -->
+    <div id="modalLote" class="modal">
+        <div class="modal-content">
+            <h3 style="color: var(--verde-oscuro); margin-bottom: 1rem;">Lote A-15 - BORDE</h3>
+            <div class="info-lote" style="margin-bottom: 1.5rem;">
+                <p><strong>Estado:</strong> <span class="estado-disponible">Disponible</span></p>
+                <p><strong>Superficie:</strong> 800 m²</p>
+                <p><strong>Precio:</strong> $85,000</p>
+                <p><strong>Medidas:</strong> Norte: 25m, Sur: 25m, Este: 32m, Oeste: 32m</p>
+                <p><strong>Restricciones:</strong> Vial: NO, Lateral: SI</p>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn btn-primary" onclick="editarDesdeMapa()">Editar Lote</button>
+                <button class="btn btn-secondary" onclick="cerrarModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navegación entre pantallas
+        function mostrarPantalla(pantallaId) {
+            // Ocultar todas las pantallas
+            document.querySelectorAll('.main-content').forEach(pantalla => {
+                pantalla.classList.remove('active');
+            });
+            
+            // Mostrar pantalla seleccionada
+            document.getElementById(pantallaId).classList.add('active');
+            
+            // Actualizar navegación activa
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Modal functions
+        function simularClickLote() {
+            document.getElementById('modalLote').style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('modalLote').style.display = 'none';
+        }
+
+        function editarDesdeMapa() {
+            alert('Funcionalidad de edición - Próximamente');
+            cerrarModal();
+        }
+
+        function cerrarSesion() {
+            if(confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+                mostrarPantalla('pantalla1');
+                alert('Sesión cerrada correctamente');
+            }
+        }
+
+        // Cerrar modal al hacer click fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('modalLote');
+            if (event.target === modal) {
+                cerrarModal();
+            }
+        }
+    </script>
+</body>
+</html>
